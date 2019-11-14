@@ -31,7 +31,16 @@ namespace MarsFramework.Pages
 
         internal void LoginSteps()
         {
-
+            // navigate to the website
+            Global.GlobalDefinitions.driver.Navigate().GoToUrl("http://www.skillswap.pro/Home");
+            //login btn
+            SignIntab.Click();
+            // fill in user's information
+            Email.SendKeys("mvpstudio.qa@gmail.com");
+            Password.SendKeys("SydneyQa2018");
+            // click the login btn 
+            LoginBtn.Click();
+            
         }
     }
 }

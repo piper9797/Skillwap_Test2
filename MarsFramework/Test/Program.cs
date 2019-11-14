@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using MarsFramework.Pages;
+using NUnit.Framework;
 
 namespace MarsFramework
 {
@@ -10,11 +11,23 @@ namespace MarsFramework
         {
 
             [Test]
-            public void Test()
+            
+            public void Share_New_Skill_Test()
             {
+              
+                // share a new skill
+                ShareSkill shareSkill = new ShareSkill();
+                shareSkill.ShareNewSkill();
+
+
+
+
+
 
 
             }
+
+            
 
 
 

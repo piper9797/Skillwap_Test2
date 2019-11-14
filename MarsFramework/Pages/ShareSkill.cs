@@ -1,4 +1,5 @@
 ﻿
+using MarsFramework.Global;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
@@ -93,18 +94,23 @@ namespace MarsFramework.Pages
 
         internal void ShareNewSkill()
         {
-            Thread.Sleep(5000);
+            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver,"Xpath", "//a[@href='/Home/ServiceListing']", 5000);
+           // Thread.Sleep(5000);
             // click the share skill btn
             ShareSkillButton.Click();
-            Thread.Sleep(2000);
+            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "Xpath", "//input[contains(@name,'title')]", 5000);
+           //Thread.Sleep(2000);
             // fill in details
             //skill
             Title.SendKeys("Thai boxing");
             Description.SendKeys("Thai boxing exchanges Arts");
             //category
-            CategoryDropDown.Click();
+            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "Xpath", "//select[contains(@name,'categoryId')]", 5000);
+            Thread.Sleep(800);
+            //CategoryDropDown.Click();
             SelectElement category = new SelectElement(CategoryDropDown);
             category.SelectByValue("8");
+                       
             Thread.Sleep(100);
             SelectElement category2= new SelectElement(SubCategoryDropDown);
             category2.SelectByValue("4");
@@ -115,12 +121,14 @@ namespace MarsFramework.Pages
             Global.GlobalDefinitions.driver.FindElement(By.XPath("(//input[contains(@name,'serviceType')])[2]")).Click();
             //skip location type
             //click week
-            Thread.Sleep(1000);
+          
+           Thread.Sleep(1000);
             Global.GlobalDefinitions.driver.FindElement(By.LinkText("Week")).Click();
             //choose the time table
             // (1)double click 
             Actions action = new Actions(Global.GlobalDefinitions.driver);
-            Thread.Sleep(600);
+           // Thread.Sleep(600);
+            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "Xpath", "//tr[6]//td[7]", 5000);
             IWebElement timetable =Global.GlobalDefinitions.driver.FindElement(By.XPath("//tr[6]//td[7]"));
             action.DoubleClick(timetable).Perform();
             Thread.Sleep(200);
@@ -132,19 +140,21 @@ namespace MarsFramework.Pages
            // EndDateDropDown.Click();
           //  EndDateDropDown.Clear();
           //  EndDateDropDown.SendKeys("6/15/2013 13:30 PM");
-          Global.GlobalDefinitions.driver.FindElement(By.XPath("//textarea[@title='Description']")).SendKeys("GOOD SKILL");
-                       
+            Global.GlobalDefinitions.driver.FindElement(By.XPath("//textarea[@title='Description']")).SendKeys("GOOD SKILL");
+            Thread.Sleep(200);
             //(4)save
             Global.GlobalDefinitions.driver.FindElement(By.XPath("//a[@class='k-button k-primary k-scheduler-update']")).Click();
             //Exchange skills
             SkillExchange.SendKeys("Arts");
             SkillExchange.SendKeys(Keys.Enter);
-
-            Thread.Sleep(500);
+          
+           
+           // GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "Xpath", " //input[@value='Save']", 5000);
+           
+            Thread.Sleep(2800);
             //save
-            Global.GlobalDefinitions.driver.FindElement(By.XPath("//input[@value='Save']")).Click();
-            
-            Thread.Sleep(500);
+            Save.Click();
+            Thread.Sleep(1500);
 
         }
 

@@ -1,4 +1,5 @@
 ﻿using Excel;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -22,15 +23,35 @@ namespace MarsFramework.Global
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(time);
 
         }
-        public static IWebElement WaitForElement(IWebDriver driver, By by, int timeOutinSeconds)
+        public static void WaitForElement(IWebDriver driver, String locator, String domValue, int second)
         {
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeOutinSeconds));
-            return (wait.Until(ExpectedConditions.ElementIsVisible(by)));
+            try
+            {
+                // visible
+                if (locator == "Xpath")
+                {
+                    var wait = new WebDriverWait(driver, new TimeSpan(0, 0, second));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(domValue)));
+                }
+
+                // clickable
+                if (locator == "Id")
+                {
+                    var wait = new WebDriverWait(driver, new TimeSpan(0, 0, second));
+                    wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.Id(domValue)));
+                }
+            }
+            catch (Exception msg)
+            {
+                Assert.Fail(msg.Message);
+
+            }
         }
+
         #endregion
 
 
-        #region Excel 
+            #region Excel 
         public class ExcelLib
         {
             static List<Datacollection> dataCol = new List<Datacollection>();

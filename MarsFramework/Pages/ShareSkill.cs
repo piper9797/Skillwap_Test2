@@ -1,5 +1,6 @@
 ﻿
 using MarsFramework.Global;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.PageObjects;
@@ -94,18 +95,18 @@ namespace MarsFramework.Pages
 
         internal void ShareNewSkill()
         {
-            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver,"Xpath", "//a[@href='/Home/ServiceListing']", 5000);
+            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", "//a[@href='/Home/ServiceListing']", 5000);
            // Thread.Sleep(5000);
             // click the share skill btn
             ShareSkillButton.Click();
-            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "Xpath", "//input[contains(@name,'title')]", 5000);
+            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", "//input[contains(@name,'title')]", 5000);
            //Thread.Sleep(2000);
             // fill in details
             //skill
             Title.SendKeys("Thai boxing");
             Description.SendKeys("Thai boxing exchanges Arts");
             //category
-            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "Xpath", "//select[contains(@name,'categoryId')]", 5000);
+            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", "//select[contains(@name,'categoryId')]", 5000);
             Thread.Sleep(800);
             //CategoryDropDown.Click();
             SelectElement category = new SelectElement(CategoryDropDown);
@@ -114,6 +115,8 @@ namespace MarsFramework.Pages
             Thread.Sleep(100);
             SelectElement category2= new SelectElement(SubCategoryDropDown);
             category2.SelectByValue("4");
+
+            Thread.Sleep(100);
             //tags
             Tags.SendKeys("fighting skill");
             Tags.SendKeys(Keys.Enter);
@@ -156,11 +159,50 @@ namespace MarsFramework.Pages
             Save.Click();
             Thread.Sleep(1500);
 
+           
+
         }
 
         internal void EditShareSkill()
         {
+            Thread.Sleep(1800);
+            //click manage listings button
+            GlobalDefinitions.driver.FindElement(By.XPath("//a[@href='/Home/ListingManagement']")).Click();
+            Thread.Sleep(1800);
+           // GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", "//tr[1]//td[8]//div[1]//button[2]//i[1]", 5000);
+            GlobalDefinitions.driver.FindElement(By.XPath("//tr[1]//td[8]//div[1]//button[2]//i[1]")).Click();
+            //find the title
+            //GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "name", "title", 5000);
+            Thread.Sleep(1800);
 
+            GlobalDefinitions.driver.FindElement(By.XPath("//input[contains(@name,'title')]")).Clear();
+          GlobalDefinitions.driver.FindElement(By.XPath("//input[contains(@name,'title')]")).SendKeys("Arts");
+
+            // Title.Clear();
+            Thread.Sleep(1800);
+            GlobalDefinitions.driver.FindElement(By.XPath("//input[@value='Save']")).Click();
+            //GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", , 5000);
+            //save
+            //Save.Click();
+
+         }
+
+
+        internal void DeleteShareSkill()
+        {
+
+            Thread.Sleep(1800);
+            //click manage listings button
+            GlobalDefinitions.driver.FindElement(By.XPath("//a[@href='/Home/ListingManagement']")).Click();
+            Thread.Sleep(1800);
+            //delete 
+            GlobalDefinitions.driver.FindElement(By.XPath("//tr[1]//td[8]//div[1]//button[3]//i[1]")).Click();
+            //Global.GlobalDefinitions.driver.SwitchTo().Alert().Accept();
+            GlobalDefinitions.driver.FindElement(By.XPath("//div[contains(@class,'tiny modal')]//button[contains(text(),'Yes')]")).Click();
         }
+
+
+
+
     }
 }

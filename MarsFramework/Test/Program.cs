@@ -28,7 +28,7 @@ namespace MarsFramework
 
             
             [Test]
-            public void Edit_And_Save_Invalid_Skill_Test()
+            public void Edit_Skill_Test()
             {
 
                 // share a new skill

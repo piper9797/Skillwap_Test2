@@ -95,12 +95,12 @@ namespace MarsFramework.Pages
 
         internal void ShareNewSkill()
         {
-            GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", "//a[@href='/Home/ServiceListing']", 5000);
-           // Thread.Sleep(5000);
+            //GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", "//a[@href='/Home/ServiceListing']", 5000);
+            Thread.Sleep(5000);
             // click the share skill btn
             ShareSkillButton.Click();
             GlobalDefinitions.WaitForElement(Global.GlobalDefinitions.driver, "XPath", "//input[contains(@name,'title')]", 5000);
-           //Thread.Sleep(2000);
+           Thread.Sleep(2000);
             // fill in details
             //skill
             Title.SendKeys("Thai boxing");

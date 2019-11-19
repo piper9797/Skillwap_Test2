@@ -1,5 +1,5 @@
 ﻿
-using AutoIt;
+
 using AutoItX3Lib;
 using MarsFramework.Global;
 using NUnit.Framework;

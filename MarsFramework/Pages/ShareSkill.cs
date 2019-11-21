@@ -100,7 +100,7 @@ namespace MarsFramework.Pages
         {
 
             // read data from exerl
-            ExcelLib.PopulateInCollection(@"C:\Users\PIPER\Desktop\Skillwap_Test2-master\MarsFramework\ExcelData\TestDataShareSkill.xlsx", "ShareSkill");
+            ExcelLib.PopulateInCollection(@"C:\Users\PIPER\source\repos\piper9797\Skillwap_Test2\MarsFramework\ExcelData\TestDataShareSkill.xlsx", "ShareSkill");
 
             Thread.Sleep(5000);
 
